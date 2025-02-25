@@ -33,6 +33,7 @@ form label {
 /* Estilos para los campos de entrada */
 form input[type="text"],
 form input[type="email"],
+form input[type="number"],
 form input[type="password"],
 form input[type="date"] {
     width: 100%;
@@ -130,6 +131,7 @@ form input[type="file"]::-webkit-file-upload-button:hover {
     form input[type="text"],
     form input[type="email"],
     form input[type="password"],
+    form input[type="password"],
     form input[type="date"] {
         font-size: 14px;
     }
@@ -161,12 +163,27 @@ form input[type="file"]::-webkit-file-upload-button:hover {
                 <span class="error">{{ $message }}</span>
             @enderror
         </div>
+        <div>
+            <label for="telefono">Telefono:</label>
+            <input type="text" id="telefono" name="telefono" value="{{ old('telefono') }}" required>
+            @error('telefono')
+                <span class="error">{{ $message }}</span>
+            @enderror
+        </div>
     
         <!-- Foto -->
         <div>
             <label for="foto">Foto:</label>
             <input type="file" id="foto" name="foto" accept="image/*" required>
             @error('foto')
+                <span class="error">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div>
+            <label for="numero_jugador">Numero Juegador:</label>
+            <input type="number" id="numero_jugador" name="numero_jugador" value="{{ old('numero_jugador') }}" required>
+            @error('numero_jugador')
                 <span class="error">{{ $message }}</span>
             @enderror
         </div>

@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('jugadors', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('apellidos');
-            $table->string('foto');
+            $table->string('nombre',25);
+            $table->string('apellidos',25);
+            $table->string('telefono',10);
+            $table->string('foto',25);
             $table->date('fecha_nacimiento');
             $table->string('numero_jugador')->unique(); // Número único para cada jugador
             $table->string('estado')->default('habilitado'); // Estado: habilitado, semifinalista, eliminado, etc.

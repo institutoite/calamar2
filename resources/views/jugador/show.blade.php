@@ -30,7 +30,7 @@ body {
 /* Encabezado del jugador */
 .player-header {
     padding: 20px;
-    background-color: #007bff;
+    background-color: #26baa5;
     color: #fff;
 }
 
@@ -108,6 +108,15 @@ body {
                 <span class="detail-label">ID de Usuario:</span>
                 <span class="detail-value">{{ $jugador->user_id }}</span>
             </div>
+
+            <div style="text-align: center; margin: 20px;">
+                <a href="{{ route('generarPDF', $jugador->id) }}" target="_blank">
+                    <button style="background-color: #26baa5; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                        Imprimir PDF
+                    </button>
+                </a>
+            </div>
+            
         </div>
     </div>
 </body>

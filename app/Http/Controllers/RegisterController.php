@@ -5,39 +5,53 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+
 use App\Models\Jugador;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RegisterController extends Controller
 {
-
-    
     public function showRegistrationForm()
     {
         return view('auth.register'); // Vista del formulario de registro
     }
 
-    public function register(Request $request)
-    {
-        // Validación de los datos del formulario
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+    
 
-        // Crear el usuario
-        $user = User::create([
-            'name' => $request->name,
-            'email' => Str::slug($request->name)."@ite.com.bo",
-            'password' => Hash::make($request->password),
-            'role' => $request->role, // Asignar el rol básico
-        ]);
+public function register(Request $request)
+{
+    // Validación de los datos del formulario
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'password' => 'required|string|min:8|confirmed',
+        'role' => 'required' // Asegurarse de que el rol está presente
+    ]);
 
-        // Redirigir al usuario después del registro
-        return redirect()->route('registrar_jugador',$user)->with('success', '¡Registro exitoso!');
-    }
+    // Crear el usuario
+    $user = User::create([
+        'name' => $request->name,
+        'email' => Str::slug($request->name) . "@ite.com.bo",
+        'password' => Hash::make($request->password),
+    ]);
+
+    // Asignar el rol
+    $role = Role::find(3); // Si `role` es un ID
+
+   // $adminRole = Role::firstOrCreate(['name' => 'admin']); // Asegúrate de que el rol 'admin' exista
+    $user->assignRole($role);
+
+    
+   
+
+    return redirect()->route('registrar_jugador', $user)->with('success', '¡Registro exitoso!');
+}
+
     /**
      * Display a listing of the resource.
      */
@@ -59,15 +73,10 @@ class RegisterController extends Controller
             'apellidos' => 'required|string|max:255',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'fecha_nacimiento' => 'required|date|before:today',
+            'numero_jugador' => 'required|integer|unique:jugadors,numero_jugador',
             'papel' => 'required|in:jugador,guardia,jefe,vip',
             'user_id' => 'required|exists:users,id',
         ]);
-    
-        $numero_jugador = $this->generarNumeroJugador($request->fecha_nacimiento);
-    
-        if (!$numero_jugador) {
-            return back()->withErrors(['numero_jugador' => 'No hay números disponibles para esta edad.']);
-        }
     
         // Guardar la foto
         $fotoPath = $request->file('foto')->store('jugadores', 'public');
@@ -78,7 +87,8 @@ class RegisterController extends Controller
         $jugador->apellidos = $request->apellidos;
         $jugador->foto = $fotoPath;
         $jugador->fecha_nacimiento = $request->fecha_nacimiento;
-        $jugador->numero_jugador = $numero_jugador;
+        $jugador->numero_jugador = $request->numero_jugador;
+        $jugador->hora_juego = $this->asignarHorario($request->fecha_nacimiento);
         $jugador->papel = $request->papel;
         $jugador->user_id = $request->user_id;
         $jugador->save(); // Guardar el jugador en la base de datos
@@ -88,56 +98,53 @@ class RegisterController extends Controller
      }
      
 
-     function generarNumeroJugador($fecha_nacimiento)
-     {
-         // Calcular la edad
-         $edad = date_diff(date_create($fecha_nacimiento), date_create('today'))->y;
-     
-         // Definir rangos de números por grupo de edad
-         $rangos = [
-             [5, 7, 1, 200],   // Grupo 1: 1 - 200
-             [8, 10, 201, 600], // Grupo 2: 201 - 600
-             [11, 13, 601, 800] // Grupo 3: 601 - 800
-         ];
-     
-         // Determinar en qué grupo de edad está el jugador
-         foreach ($rangos as $rango) {
-             if ($edad >= $rango[0] && $edad <= $rango[1]) {
-                 $min = $rango[2];
-                 $max = $rango[3];
-     
-                 // Obtener el último número asignado dentro del rango
-                 $ultimoNumero = DB::table('jugadors')
-                     ->whereBetween('numero_jugador', [$min, $max])
-                     ->max('numero_jugador');
-     
-                 // Si no hay registros, empezar desde el mínimo
-                 $nuevoNumero = $ultimoNumero ? $ultimoNumero + 1 : $min;
-     
-                 // Verificar que el número no exista y buscar el siguiente disponible
-                 while (DB::table('jugadors')->where('numero_jugador', $nuevoNumero)->exists()) {
-                     $nuevoNumero++;
-                     if ($nuevoNumero > $max) {
-                         return null; // No hay más números disponibles en el rango
-                     }
-                 }
-     
-                 return $nuevoNumero;
-             }
-         }
-     
-         return null; // Si la edad no pertenece a ningún grupo
-     }
-     
+     function asignarHorario($fechaNacimiento) {
+        // Definir los horarios de inicio para cada grupo de edad
+        $horarios = [
+            'menor_5'   => '09:00',
+            'edad_5_6'  => '09:30',
+            'edad_7_8'  => '10:00',
+            'edad_9_10' => '10:30',
+            'edad_11_12'=> '11:00',
+            'mayor_12'  => '11:30',
+        ];
+    
+        // Obtener la edad actual
+        $fechaNacimiento = new DateTime($fechaNacimiento);
+        $hoy = new DateTime();
+        $edad = $hoy->diff($fechaNacimiento)->y; // Obtener años de diferencia
+    
+        // Determinar el horario según la edad
+        if ($edad < 5) {
+            return $horarios['menor_5'];
+        } elseif ($edad >= 5 && $edad <= 6) {
+            return $horarios['edad_5_6'];
+        } elseif ($edad >= 7 && $edad <= 8) {
+            return $horarios['edad_7_8'];
+        } elseif ($edad >= 9 && $edad <= 10) {
+            return $horarios['edad_9_10'];
+        } elseif ($edad >= 11 && $edad <= 12) {
+            return $horarios['edad_11_12'];
+        } else {
+            return $horarios['mayor_12'];
+        }
+    }
 
 
+    public function generarPDF($id)
+    {
+        $jugador = Jugador::findOrFail($id); // Buscar el jugador por ID
+    
+        $pdf = Pdf::loadView('jugador.pdf', compact('jugador'));
+        return $pdf->stream('jugador_'.$jugador->numero_jugador.'.pdf'); 
+    }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        return "hola ";
     }
 
     /**

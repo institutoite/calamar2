@@ -70,10 +70,10 @@ class JugadorResource extends Resource
             // Campo para el papel (lista desplegable)
             Select::make('papel')
                 ->options([
-                    'jugador' => 'Jugador',
-                    'guardia' => 'Guardia',
-                    'jefe' => 'Jefe',
-                    'vip' => 'VIP',
+                    'jugador' => 'jugador',
+                    'guardia' => 'juardia',
+                    'jefe' => 'jefe',
+                    'vip' => 'voluntario',
                 ])
                 ->required()
                 ->default('jugador'),

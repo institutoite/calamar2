@@ -83,7 +83,7 @@ button[type="submit"]:hover {
             </div>
     
             <!-- Campo Oculto: Rol Básico -->
-            <input type="hidden" name="role" value="user">
+            <input type="hidden" name="role" value="jugador">
     
             <!-- Botón de Registro -->
             <button type="submit">Registrarse</button>

@@ -14,14 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\RegisterController;
+use App\Models\Jugador;
 
 Route::get('/', function () {
     return view('welcome');
 })->name("home");
+Route::get('/vista', function () {
+    $jugador=Jugador::find(3);
+    return view('jugador.pdf',compact('jugador'));
+})->name("home");
+
+
 
 
 // Mostrar el formulario de registro
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('registro');
+Route::get('/register/show', [RegisterController::class, 'show'])->name('jugador.show');
+Route::get('/generar-pdf/{id}', [RegisterController::class, 'generarPDF'])->name("generarPDF");
 
 // Procesar el formulario de registro
 Route::post('/register', [RegisterController::class, 'register'])->name("registrar");
