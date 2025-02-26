@@ -22,13 +22,18 @@ class RegisterController extends Controller
         return view('auth.register'); // Vista del formulario de registro
     }
 
+    public function index()
+    {
+        // Obtener todos los jugadores con los campos necesarios
+       
+    }
     
 
 public function register(Request $request)
 {
     // Validación de los datos del formulario
     $request->validate([
-        'name' => 'required|string|max:255',
+        'name' => 'required|string|max:255|unique:users,name',
         'password' => 'required|string|min:8|confirmed',
         'role' => 'required' // Asegurarse de que el rol está presente
     ]);
@@ -72,8 +77,9 @@ public function register(Request $request)
             'nombre' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'telefono' => 'required|numeric|digits:8',
             'fecha_nacimiento' => 'required|date|before:today',
-            'numero_jugador' => 'required|integer|unique:jugadors,numero_jugador',
+            'numero_jugador' => 'required|integer|max:9999|unique:jugadors,numero_jugador',
             'papel' => 'required|in:jugador,guardia,jefe,vip',
             'user_id' => 'required|exists:users,id',
         ]);
@@ -89,6 +95,7 @@ public function register(Request $request)
         $jugador->fecha_nacimiento = $request->fecha_nacimiento;
         $jugador->numero_jugador = $request->numero_jugador;
         $jugador->hora_juego = $this->asignarHorario($request->fecha_nacimiento);
+        $jugador->telefono = $request->telefono;
         $jugador->papel = $request->papel;
         $jugador->user_id = $request->user_id;
         $jugador->save(); // Guardar el jugador en la base de datos

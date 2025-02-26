@@ -65,7 +65,7 @@ body {
 
 .detail-label {
     font-weight: bold;
-    color: #007bff;
+    color: rgb(55, 95, 122);
     display: block;
     margin-bottom: 5px;
 }
@@ -111,8 +111,8 @@ body {
 
             <div style="text-align: center; margin: 20px;">
                 <a href="{{ route('generarPDF', $jugador->id) }}" target="_blank">
-                    <button style="background-color: #26baa5; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                        Imprimir PDF
+                    <button style="background-color:rgb(55,95,122); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                        Imprimir registro
                     </button>
                 </a>
             </div>

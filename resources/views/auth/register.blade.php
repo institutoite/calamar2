@@ -17,7 +17,7 @@
 
 .register-form h2 {
     text-align: center;
-    color: #e63946;
+    color: rgb(55, 95, 122);
     margin-bottom: 20px;
 }
 
@@ -42,7 +42,7 @@
 button[type="submit"] {
     width: 100%;
     padding: 10px;
-    background-color: #e63946;
+    background-color: #26baa5;
     color: white;
     border: none;
     border-radius: 5px;
@@ -51,9 +51,14 @@ button[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
-    background-color: #d62828;
-}
+    button[type="submit"]:hover {
+        background-color: rgb(55, 95, 122);
+    }
+
+    .error {
+        color: rgb(55, 95, 122);
+        font-size: 14px;
+    }
     </style>
 </head>
 <body>
@@ -65,7 +70,12 @@ button[type="submit"]:hover {
             <!-- Campo: Nombre -->
             <div class="form-group">
                 <label for="name">usuario:(sinespacios)</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+            </div>
+            <div class="form-group">
+                @error('name')
+                    <span class="error">{{ $message }}</span>
+                @enderror
             </div>
     
          
@@ -73,13 +83,14 @@ button[type="submit"]:hover {
             <!-- Campo: Contraseña -->
             <div class="form-group">
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" value="{{ old('password') }}" required>
             </div>
     
             <!-- Campo: Confirmar Contraseña -->
             <div class="form-group">
                 <label for="password_confirmation">Confirmar Contraseña:</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" required>
+                <input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}" required>
+
             </div>
     
             <!-- Campo Oculto: Rol Básico -->

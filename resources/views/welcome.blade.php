@@ -4,624 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego del Calamar para Niños</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Estilos generales */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    background-color: #f9f9f9;
-}
+    <link rel="stylesheet" href="{{ asset('css/custom/estilos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom/tabla.css') }}">
+    
+    {{-- pie de pagina  --}}
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('css/pie/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pie/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pie/bootstrap.min.css') }}">
+
+{{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% encabezado --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/header/style.css') }}">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="{{ asset('css/header/responsive.css') }}">
+    <!-- fevicon -->
+    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/header/jquery.mCustomScrollbar.min.css') }}">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- fonts -->
+    {{-- <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet"> --}}
+    <!-- owl stylesheets --> 
+    <link rel="stylesheet" href="{{ asset('css/header/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    {{-- data datable --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
-/* Sección de Bienvenida */
-.welcome-section {
-    background-color: #ffcc00; /* Amarillo divertido */
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.welcome-container h1 {
-    font-size: 28px;
-    color: #26baa5; /* Rojo llamativo */
-    margin-bottom: 20px;
-}
-
-.welcome-container p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.register-button {
-    background-color: #26baa5;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.register-button:hover {
-    background-color: #26baa5;
-}
-
-/* Sección de Información */
-.info-section {
-    padding: 40px 20px;
-    background-color: #ffffff;
-    text-align: center;
-}
-
-.info-container h2 {
-    font-size: 24px;
-    color: #26baa5;
-    margin-bottom: 20px;
-}
-
-.features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.feature {
-    background-color: #f0f0f0;
-    padding: 15px;
-    border-radius: 10px;
-    width: 200px;
-    text-align: left;
-}
-
-.feature span {
-    font-size: 20px;
-}
-
-.feature p {
-    margin: 0;
-    font-size: 14px;
-}
-
-/* Sección de Registro */
-.register-section {
-    background-color: rgb(55,95,122);
-    padding: 40px 20px;
-    text-align: center;
-}
-
-.register-container h2 {
-    font-size: 24px;
-    color: white;
-    margin-bottom: 20px;
-}
-
-.register-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.register-form input {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.register-form button {
-    background-color: #ffcc00;
-    color: #333;
-    border: none;
-    padding: 15px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.register-form button:hover {
-    background-color: #e6b800;
-}
-
-/* Sección de Contacto */
-.contact-section {
-    padding: 40px 20px;
-    background-color: #ffffff;
-    text-align: center;
-}
-
-.contact-container h2 {
-    font-size: 24px;
-    color: #26baa5;
-    margin-bottom: 20px;
-}
-
-.contact-container ul {
-    list-style: none;
-    padding: 0;
-}
-
-.contact-container li {
-    margin: 10px 0;
-}
-
-.contact-container a {
-    color: #26baa5;
-    text-decoration: none;
-}
-
-.contact-container a:hover {
-    text-decoration: underline;
-}
-
-/* Footer */
-.footer-section {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.footer-container p {
-    margin: 0;
-    font-size: 14px;
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
-}
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-/* Estilos para la Sección de Contáctanos */
-.contact-section {
-    padding: 50px 20px;
-    background-color: #ffffff;
-    text-align: center;
-}
-
-.contact-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.contact-container h2 {
-    font-size: 28px;
-    color: #26baa5; /* Rojo llamativo */
-    margin-bottom: 20px;
-}
-
-.contact-container p {
-    font-size: 16px;
-    margin-bottom: 40px;
-}
-
-.contact-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    margin-bottom: 40px;
-}
-
-.contact-form, .contact-info {
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.contact-form h3, .contact-info h3 {
-    font-size: 22px;
-    color: #26baa5;
-    margin-bottom: 20px;
-}
-
-.contact-form input, .contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.contact-form textarea {
-    resize: vertical;
-    height: 150px;
-}
-
-.contact-form button {
-    background-color: #26baa5;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.contact-form button:hover {
-    background-color: #26baa5;
-}
-
-.contact-info ul {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-}
-
-.contact-info li {
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
-.contact-info a {
-    color: #26baa5;
-    text-decoration: none;
-}
-
-.contact-info a:hover {
-    text-decoration: underline;
-}
-
-.contact-map {
-    margin-top: 40px;
-}
-
-.contact-map h3 {
-    font-size: 22px;
-    color: #26baa5;
-    margin-bottom: 20px;
-}
-
-.contact-map iframe {
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-    /*encabezado */
-    /* Estilos para el Encabezado */
-.main-header {
-    background-color: #26baa5; /* Rojo llamativo */
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo img {
-    height: 50px; /* Ajusta el tamaño del logo */
-}
-
-.main-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-}
-
-.main-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
-
-.main-nav a:hover {
-    color: #ffcc00; /* Amarillo al pasar el mouse */
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.btn-login, .btn-register {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-login {
-    background-color: transparent;
-    border: 2px solid white;
-    color: white;
-}
-
-.btn-login:hover {
-    background-color: white;
-    color: #26baa5;
-}
-
-.btn-register {
-    background-color: #ffcc00; /* Amarillo */
-    border: 2px solid #ffcc00;
-    color: #333;
-}
-
-.btn-register:hover {
-    background-color: #e6b800; /* Amarillo más oscuro */
-    border-color: #e6b800;
-}
-
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% unete a nosotros */
-/* Estilos para la Sección Únete a Nosotros */
-.join-us-section {
-    padding: 50px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
-}
-
-.join-us-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.join-us-container h2 {
-    font-size: 28px;
-    color: #26baa5; /* Rojo llamativo */
-    margin-bottom: 20px;
-}
-
-.join-us-container p {
-    font-size: 16px;
-    margin-bottom: 40px;
-}
-
-.join-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 40px;
-}
-
-.join-card {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    text-align: center;
-}
-
-.join-card h3 {
-    font-size: 20px;
-    color: #26baa5;
-    margin-bottom: 15px;
-}
-
-.join-card p {
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.btn-join {
-    background-color: #26baa5;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.btn-join:hover {
-    background-color: #26baa5;
-}
-
-.contact-form {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.contact-form h3 {
-    font-size: 22px;
-    color: #26baa5;
-    margin-bottom: 20px;
-}
-
-.contact-form input, .contact-form select, .contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.contact-form textarea {
-    resize: vertical;
-    height: 150px;
-}
-
-.contact-form button {
-    background-color: #26baa5;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.contact-form button:hover {
-    background-color: #26baa5;
-}
-
-/*enviar un comentario a whatsapp */
-.contact-form {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.contact-form h3 {
-    font-size: 22px;
-    color: #26baa5;
-    margin-bottom: 20px;
-}
-
-.contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    resize: vertical;
-    height: 150px;
-}
-
-.contact-form button {
-    background-color: #26baa5;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.contact-form button:hover {
-    background-color: #26baa5;
-}
-    </style>
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="header-container">
-            <!-- Logo -->
-            <div class="logo">
-                <a href="#">
-                    <img src="logo.png" alt="Logo Juego del Calamar para Niños">
-                </a>
-            </div>
-
-            <!-- Menú de Navegación -->
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Cómo Funciona</a></li>
-                    <li><a href="#">Contáctanos</a></li>
-                </ul>
-            </nav>
-
-            <!-- Botones de Registrarse y Login -->
-            <div class="auth-buttons">
-                <a href="{{ url('admin') }}" class="btn-login">Iniciar Sesión</a>
-                <a href="{{ route('registro') }}" class="btn-register">Registrarse</a>
-            </div>
+    <div class="header_section">
+        <div class="container-fluid">
+           <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a class="navbar-brand" href="index.html"><img src="images/logo.png"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                       <a class="nav-link" href="{{ url('admin') }}">Iniciar Sesion</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="{{ route('registro') }}">Registrare</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://wa.me/59171039910"><i class="fa-brands fa-whatsapp fa-beat fa-2x" style="color: #2ba81a;"></i></a>
+                    </li>
+                 </ul>
+                 <form class="form-inline my-2 my-lg-0">
+                    <div class="user_icon"><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></div>
+                    <div class="user_icon"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></div>
+                 </form>
+                 <div class="call_btn"><a href="#"><i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left10">Llamar : 60902299</span></a></div>
+              </div>
+           </nav>
         </div>
-    </header>
-
+     </div>
 
     <!-- Sección de Bienvenida -->
     <section class="welcome-section">
         <div class="welcome-container">
-            <h1>¡Bienvenidos al Mundo del Juego del Calamar para Niños! 🦑🎮</h1>
+            <h1>¡Bienvenidos al Mundo del Juego del Calamar!</h1>
             <p>¿Estás listo para sumergirte en una aventura llena de diversión, desafíos y emociones? ¡Regístrate y únete a la diversión!</p>
-            <button class="register-button">¡Regístrate Ahora! 🎉</button>
+            <a href="{{ route('registro') }}" class="register-button">¡Regístrate Ahora! 🎉</a>
         </div>
     </section>
-
-    <!-- Sección de Información del Juego -->
-    <section class="info-section">
-        <div class="info-container">
-            <h2>¿Cómo Funciona?</h2>
-            <div class="features">
-                <div class="feature">
-                    <span>✅</span>
-                    <p><strong>Regístrate</strong> de manera fácil y rápida.</p>
-                </div>
-                <div class="feature">
-                    <span>✅</span>
-                    <p><strong>Elige</strong> el lugar y la hora del juego.</p>
-                </div>
-                <div class="feature">
-                    <span>✅</span>
-                    <p><strong>Participa</strong> en desafíos divertidos y seguros.</p>
-                </div>
-                <div class="feature">
-                    <span>✅</span>
-                    <p><strong>Gana</strong> premios increíbles.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Registro -->
-    <section class="register-section">
-        <div class="register-container">
-            <h2>Siguenos en tik tok</h2>
-            <a href="https://www.tiktok.com/@ite_educabol" class="btn-join">Seguir</a>
-        </div>
-    </section>
-
-    <!-- Sección de Contáctanos - Únete a Nosotros -->
+        <!-- Sección de Contáctanos - Únete a Nosotros -->
 <section class="join-us-section">
     <div class="join-us-container">
         <h2>Únete a Nosotros</h2>
         <p>¿Quieres ser parte de nuestra comunidad? Tenemos varias formas en las que puedes participar. ¡Elige la que más te guste!</p>
 
         <!-- Tarjetas de Opciones -->
-        <div class="join-options">
+       
             <!-- Opción 1: Guardia -->
-            <div class="join-card">
-                <h3>👮‍♂️ Sé un Guardia</h3>
-                <p>Protege a los participantes y asegúrate de que todos sigan las reglas del juego. ¡Tu ayuda es invaluable!</p>
-                <a href="https://wa.me/59160902299?text=Quiero%20ser%20guardia,%20más%20información%20por%20favor." class="btn-join" target="_blank">Más Información</a>
-            </div>
+          
 
             <!-- Opción 2: Acompañante en Recorridos -->
             <div class="join-options">
+                <div class="join-card">
+                    <h3>👮‍♂️ Sé un Guardia</h3>
+                    <p>Cuida a los participantes y asegúrate de que todos sigan las reglas del juego. ¡Tu ayuda es invaluable!</p>
+                    <a href="https://wa.me/59160902299?text=Quiero%20ser%20guardia,%20más%20información%20por%20favor." class="btn-join" target="_blank">Más Información</a>
+                </div>
+
                 <!-- Opción 1: Acompáñanos en Recorridos -->
                 <div class="join-card">
-                    <h3>👫 Acompáñanos en Recorridos</h3>
-                    <p>Únete a nuestros recorridos con la muñeca y ayuda a guiar a los participantes en esta emocionante aventura.</p>
+                    <h3>👫Recorridos</h3>
+                    <p>Únete a nuestros recorridos con la muñeca en esta emocionante aventura.</p>
                     <a href="https://wa.me/59160902299?text=Quiero%20ser%20acompañante%20en%20recorridos,%20más%20información%20por%20favor." class="btn-join" target="_blank">Más Información</a>
                 </div>
             
@@ -639,28 +114,80 @@ body {
                     <a href="https://wa.me/59160902299?text=Quiero%20saber%20más%20sobre%20otros%20roles,%20más%20información%20por%20favor." class="btn-join" target="_blank">Más Información</a>
                 </div>
             </div>
-        </div>
 
-        <!-- Formulario de Contacto -->
-        {{-- <div class="contact-form">
-            <h3>¿Listo para Unirte? ¡Contáctanos!</h3>
-            <form action="#" method="POST">
-                <input type="text" name="name" placeholder="Nombre completo" required>
-                <input type="email" name="email" placeholder="Correo electrónico" required>
-                <input type="tel" name="phone" placeholder="Teléfono (opcional)">
-                <select name="role" required>
-                    <option value="" disabled selected>Selecciona un rol</option>
-                    <option value="guardia">Guardia</option>
-                    <option value="acompañante">Acompañante en Recorridos</option>
-                    <option value="voluntario">Voluntario</option>
-                    <option value="otros">Otros</option>
-                </select>
-                <textarea name="message" placeholder="Escribe tu mensaje aquí..." rows="5" required></textarea>
-                <button type="submit">Enviar Mensaje</button>
-            </form>
-        </div> --}}
+       
     </div>
 </section>
+   
+
+<section class="info-section">
+    <table id="jugadores-table" class="display">
+        <thead>
+            <tr>
+                <th>Número de Jugador</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Foto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($jugadores as $jugador)
+                <tr>
+                    <td>{{ $jugador->numero_jugador }}</td>
+                    <td>{{ $jugador->nombre }}</td>
+                    <td>{{ $jugador->apellidos }}</td>
+                    <td>
+                        <img src="{{ asset('storage/' . $jugador->foto) }}" alt="Foto" width="50">
+                    </td>
+                    <td>
+                        <a href="{{ route('generarPDF', $jugador->id) }}" target="_blank">
+                            <button style="background-color:rgb(55,95,122); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                                Imprimir
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</section>
+
+
+    <!-- Sección de Información del Juego -->
+    <section class="info-section">
+        <div class="info-container">
+            <h2>¿Cómo Funciona?</h2>
+            <div class="features">
+                <div class="feature">
+                    <span>✅</span>
+                    <p><strong>Regístrate</strong> de manera fácil y rápida.</p>
+                </div>
+                <div class="feature">
+                    <span>✅</span>
+                    <p><strong>Elige</strong> tu numero de jugador</p>
+                </div>
+                <div class="feature">
+                    <span>✅</span>
+                    <p><strong>Participa</strong> tu y tus amigos</p>
+                </div>
+                <div class="feature">
+                    <span>✅</span>
+                    <p><strong>Imprime</strong> tu número de jugador.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Registro -->
+    <section class="register-section">
+        <div class="register-container">
+            <h2>Siguenos en tik tok</h2>
+            <a href="https://www.tiktok.com/@ite_educabol" target="_blank" class="btn-join">Seguir</a>
+        </div>
+    </section>
+
+
 
     <!-- Sección de Contacto -->
    <!-- Sección de Contáctanos -->
@@ -705,17 +232,164 @@ body {
     </div>
 </section>
 
-    <!-- Footer -->
-    <footer class="footer-section">
-        <div class="footer-container">
-            <p>© 2023 ite educabol. Todos los derechos reservados.</p>
-            <ul class="footer-links">
-                <li><a href="#">Términos y Condiciones</a></li>
-                <li><a href="#">Política de Privacidad</a></li>
-                <li><a href="#">Ayuda</a></li>
-            </ul>
+<footer class="footer-10">
+    <div class="container">
+       
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-4 mb-md-0 mb-4">
+                        <h2 class="footer-heading">Acerca de ITE</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="https://ite.com.bo/" class="d-block">Página web</a></li>
+                            <li><a href="https://services.ite.com.bo/" class="d-block">Servicios</a></li>
+                            <li><a href="https://redes.ite.com.bo" class="d-block">Redes</a></li>
+                            <li><a href="https://www.facebook.com/ite.educabol" class="d-block">Facebook</a></li>
+                            <li><a href="https://www.tiktok.com/@ite_educabol" class="d-block">Tik Tok</a></li>
+                            <li><a href="https://www.instagram.com/ite.educabol/" class="d-block">Instagram</a></li>
+                            <li><a href="https://api.whatsapp.com/send/?phone=59171039910" class="d-block">Whatsapp</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 mb-md-0 mb-4">
+                        <h2 class="footer-heading">Servicios</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="https://services.ite.com.bo/modalidades/1" class="d-block">Inicial</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/2" class="d-block">Primaria</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/3" class="d-block">Secundaria</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/4" class="d-block">Pre universitario</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/5" class="d-block">Institutos</a></li>
+                            <li><a href="https://ite.com.bo/universitario" class="d-block">Universitario</a></li>
+                            <li><a href="https://ite.com.bo/programacion" class="d-block">Programación</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/7" class="d-block">Computación</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 mb-md-0 mb-4">
+                        <h2 class="footer-heading">services</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="https://services.ite.com.bo/modalidades/8" class="d-block">Cubo Rubik</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/9" class="d-block">Ajedrez</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/11" class="d-block">Dactilografía</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/12" class="d-block">Oratoria</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/13" class="d-block">Lectura Escritura</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/14" class="d-block">Súper Memoria</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/15" class="d-block">Robótica</a></li>
+                            <li><a href="https://services.ite.com.bo/modalidades/16" class="d-block">Programación</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 mb-md-0 mb-4">
+                <h2 class="footer-heading">Suscríbete</h2>
+                <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        <ul class="list-unstyled">
+                            <li><a href="https://redes.ite.com.bo" class="d-block">Redes</a></li>
+                            <li><a href="https://www.facebook.com/ite.educabol" class="d-block">Facebook</a></li>
+                            <li><a href="https://www.tiktok.com/@ite_educabol" class="d-block">Tik Tok</a></li>
+                            <li><a href="https://www.instagram.com/ite.educabol/" class="d-block">Instagram</a></li>
+                            <li><a href="https://api.whatsapp.com/send/?phone=59171039910" class="d-block">Whatsapp</a></li>
+                        </ul>
+                    </div>
+                    <span class="subheading"><a class="nav-link" href="https://wa.me/59171039910"><i class="fa-brands fa-whatsapp fa-beat fa-3x" style="color: #2ba81a;"></i></a></span>
+                </form>
+            </div>
         </div>
-    </footer>
+        <div class="row mt-5 pt-4 border-top">
+            <div class="col-md-6 col-lg-8 mb-md-0 mb-4">
+                <p class="copyright mb-0 fa-1x">
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados. | Desarrollado por David Flores
+                </p>
+            </div>
+            <div class="col-md-6 col-lg-4 text-md-right">
+                <ul class="ftco-footer-social p-0">
+                    {{-- <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="ion-logo-twitter"></span></a></li>
+                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="ion-logo-facebook"></span></a></li>
+                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="ion-logo-instagram"></span></a></li> --}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="{{ asset('js/pie/jquery.min.js') }}"></script>
+<script src="{{ asset('js/pie/popper.js') }}"></script>
+<script src="{{ asset('js/pie/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/pie/main.js') }}"></script>
+
+<script src="{{ asset('js/header/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('js/header/jquery-3.0.0.min.js') }}"></script>
+<script src="{{ asset('js/header/plugin.js') }}"></script>
+<!-- sidebar -->
+<script src="{{ asset('js/header/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script src="{{ asset('js/header/custom.js') }}"></script>
+<!-- javascript --> 
+<script src="{{ asset('js/header/owl.carousel.js') }}"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Inicializar DataTable
+        $('#jugadores-table').DataTable({
+           "language": {
+                    "decimal": ",",
+                    "thousands": ".",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primera",
+                        "last": "Última",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "emptyTable": "No hay datos disponibles en la tabla",
+                    "aria": {
+                        "sortAscending": ": activar para ordenar la columna en orden ascendente",
+                        "sortDescending": ": activar para ordenar la columna en orden descendente"
+                    }
+                }
+        });
+    });
+
+    // Función para imprimir
+    function imprimirJugador(id) {
+        alert("Imprimir jugador con ID: " + id);
+        // Aquí puedes agregar la lógica para imprimir
+    }
+</script>
+
+
+<script>
+    $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:35,
+    nav:true,
+    center: true,
+    responsive:{
+        0:{
+            items:1,
+            margin:0
+            },
+        575:{
+            items:1,
+            margin:0
+        },
+        768:{
+            items:3,
+            margin:0
+        },
+        1000:{
+            items:3
+        }
+    }
+    })   
+</script>  
 
     <script>
     function sendToWhatsApp() {

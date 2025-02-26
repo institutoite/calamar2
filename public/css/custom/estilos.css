@@ -1,0 +1,522 @@
+  /* Estilos generales */
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Sección de Bienvenida */
+.welcome-section {
+    background-color: rgb(227, 225, 227); /* Amarillo divertido */
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.welcome-container h1 {
+    font-size: 28px;
+    color: #26baa5; /* Rojo llamativo */
+    margin-bottom: 20px;
+}
+
+.welcome-container p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.register-button {
+    background-color: #26baa5;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #26baa5;
+}
+
+/* Sección de Información */
+.info-section {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.info-container h2 {
+    font-size: 24px;
+    color: #26baa5;
+    margin-bottom: 20px;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.feature {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 10px;
+    width: 200px;
+    text-align: left;
+}
+
+.feature span {
+    font-size: 20px;
+}
+
+.feature p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Sección de Registro */
+.register-section {
+    background-color: rgb(55,95,122);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.register-container h2 {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.register-form input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.register-form button {
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-form button:hover {
+    background-color: #e6b800;
+}
+
+/* Sección de Contacto */
+.contact-section {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.contact-container h2 {
+    font-size: 24px;
+    color: #26baa5;
+    margin-bottom: 20px;
+}
+
+.contact-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-container li {
+    margin: 10px 0;
+}
+
+.contact-container a {
+    color: #26baa5;
+    text-decoration: none;
+}
+
+.contact-container a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer-section {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-container p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para la Sección de Contáctanos */
+.contact-section {
+    padding: 50px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-container h2 {
+    font-size: 28px;
+    color: #26baa5; /* Rojo llamativo */
+    margin-bottom: 20px;
+}
+
+.contact-container p {
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.contact-form, .contact-info {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h3, .contact-info h3 {
+    font-size: 22px;
+    color: #26baa5;
+    margin-bottom: 20px;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.contact-form button {
+    background-color: #26baa5;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #26baa5;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.contact-info li {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.contact-info a {
+    color: #26baa5;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.contact-map {
+    margin-top: 40px;
+}
+
+.contact-map h3 {
+    font-size: 22px;
+    color: #26baa5;
+    margin-bottom: 20px;
+}
+
+.contact-map iframe {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    /*encabezado */
+    /* Estilos para el Encabezado */
+.main-header {
+    background-color: #26baa5; /* Rojo llamativo */
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 50px; /* Ajusta el tamaño del logo */
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: #ffcc00; /* Amarillo al pasar el mouse */
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-login, .btn-register {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-login {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: white;
+    color: #26baa5;
+}
+
+.btn-register {
+    background-color: #ffcc00; /* Amarillo */
+    border: 2px solid #ffcc00;
+    color: #333;
+}
+
+.btn-register:hover {
+    background-color: rgb(55,95,122); /* Amarillo más oscuro */
+    border-color: #e6b800;
+}
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% unete a nosotros */
+/* Estilos para la Sección Únete a Nosotros */
+.join-us-section {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.join-us-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.join-us-container h2 {
+    font-size: 28px;
+    color: #26baa5; /* Rojo llamativo */
+    margin-bottom: 20px;
+}
+
+.join-us-container p {
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.join-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.join-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.join-card h3 {
+    font-size: 20px;
+    color: #26baa5;
+    margin-bottom: 15px;
+}
+
+.join-card p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.btn-join {
+    background-color: #26baa5;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-join:hover {
+    background-color: #26baa5;
+}
+
+.contact-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form h3 {
+    font-size: 22px;
+    color: #26baa5;
+    margin-bottom: 20px;
+}
+
+.contact-form input, .contact-form select, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.contact-form button {
+    background-color: #26baa5;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #26baa5;
+}
+
+/*enviar un comentario a whatsapp */
+.contact-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form h3 {
+    font-size: 22px;
+    color: #26baa5;
+    margin-bottom: 20px;
+}
+
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
+    height: 150px;
+}
+
+.contact-form button {
+    background-color: #26baa5;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #26baa5;
+}

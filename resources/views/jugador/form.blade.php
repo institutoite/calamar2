@@ -11,23 +11,23 @@ form {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: rgba(38,186,165,0.2);
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos para los grupos de campos */
 form div {
-    margin-bottom: 20px;
+    margin-bottom: 2px;
 }
 
 /* Estilos para las etiquetas */
 form label {
-    display: block;
+    /*display: block;*/
     font-size: 14px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 /* Estilos para los campos de entrada */
@@ -36,7 +36,7 @@ form input[type="email"],
 form input[type="number"],
 form input[type="password"],
 form input[type="date"] {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -67,7 +67,7 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background-color: #d62828; /* Color rojo más oscuro al pasar el mouse */
+    background-color: rgb(55,95,122); /* Color rojo más oscuro al pasar el mouse */
 }
 
 /* Estilos para el select */
@@ -89,7 +89,7 @@ form select:focus {
 
 /* Estilos para el input file */
 form input[type="file"] {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -118,9 +118,13 @@ form input[type="file"]::-webkit-file-upload-button {
 }
 
 form input[type="file"]::-webkit-file-upload-button:hover {
-    background-color: #d62828; /* Color rojo más oscuro al pasar el mouse */
+    background-color: rgb(55,95,122); /* Color rojo más oscuro al pasar el mouse */
 }
 
+.error {
+    color: red;
+    font-size: 14px;
+}
 
 /* Estilos para pantallas pequeñas (responsive) */
 @media (max-width: 600px) {
@@ -140,6 +144,8 @@ form input[type="file"]::-webkit-file-upload-button:hover {
         font-size: 14px;
     }
 }
+
+
     </style>
 </head>
 <body>
@@ -148,68 +154,68 @@ form input[type="file"]::-webkit-file-upload-button:hover {
     
         <!-- Nombre -->
         <div>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
+            <label for="nombre">Nombre:</label> 
             @error('nombre')
                 <span class="error">{{ $message }}</span>
             @enderror
+            <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}">
         </div>
     
         <!-- Apellidos -->
         <div>
             <label for="apellidos">Apellidos:</label>
-            <input type="text" id="apellidos" name="apellidos" value="{{ old('apellidos') }}" required>
             @error('apellidos')
                 <span class="error">{{ $message }}</span>
             @enderror
+            <input type="text" id="apellidos" name="apellidos" value="{{ old('apellidos') }}">
         </div>
         <div>
             <label for="telefono">Telefono:</label>
-            <input type="text" id="telefono" name="telefono" value="{{ old('telefono') }}" required>
             @error('telefono')
                 <span class="error">{{ $message }}</span>
             @enderror
+            <input type="text" id="telefono" name="telefono" value="{{ old('telefono') }}">
         </div>
     
         <!-- Foto -->
         <div>
             <label for="foto">Foto:</label>
-            <input type="file" id="foto" name="foto" accept="image/*" required>
             @error('foto')
                 <span class="error">{{ $message }}</span>
             @enderror
+            <input type="file" id="foto" name="foto" accept="image/*">
         </div>
 
         <div>
             <label for="numero_jugador">Numero Juegador:</label>
-            <input type="number" id="numero_jugador" name="numero_jugador" value="{{ old('numero_jugador') }}" required>
             @error('numero_jugador')
                 <span class="error">{{ $message }}</span>
             @enderror
+            <input type="number" id="numero_jugador" name="numero_jugador" value="{{ old('numero_jugador') }}">
         </div>
     
         <!-- Fecha de Nacimiento -->
         <div>
             <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" required>
             @error('fecha_nacimiento')
                 <span class="error">{{ $message }}</span>
             @enderror
+            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}">
         </div>
     
         <!-- Rol -->
         <div>
             <label for="papel">Rol:</label>
-            <select id="papel" name="papel" required>
+            @error('papel')
+                <span class="error">{{ $message }}</span>
+            @enderror
+            <select id="papel" name="papel">
                 <option value="">Seleccione rol</option>
                 <option value="jugador" {{ old('papel') == 'jugador' ? 'selected' : '' }}>Jugador</option>
                 <option value="guardia" {{ old('papel') == 'guardia' ? 'selected' : '' }}>Guardia</option>
                 <option value="jefe" {{ old('papel') == 'jefe' ? 'selected' : '' }}>Jefe</option>
                 <option value="vip" {{ old('papel') == 'vip' ? 'selected' : '' }}>VIP</option>
             </select>
-            @error('papel')
-                <span class="error">{{ $message }}</span>
-            @enderror
         </div>
     
         <!-- ID del Usuario -->
@@ -221,13 +227,7 @@ form input[type="file"]::-webkit-file-upload-button:hover {
         <button type="submit">Registrarse</button>
     </form>
     
-    <style>
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-    </style>
-    
+   
     
 </body>
 </html>

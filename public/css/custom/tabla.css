@@ -1,0 +1,97 @@
+/* Estilos generales para la tabla */
+#jugadores-table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre celdas */
+    margin: 20px 0;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta el contenido que sobresale */
+}
+
+/* Estilos para las celdas del encabezado */
+#jugadores-table thead th {
+    background-color: #26baa5; /* Verde moderno */
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase; /* Texto en mayúsculas */
+    font-size: 14px;
+}
+
+/* Estilos para las celdas del cuerpo */
+#jugadores-table tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd; /* Línea divisoria entre filas */
+    font-size: 14px;
+}
+
+/* Efecto hover para las filas */
+#jugadores-table tbody tr:hover {
+    background-color: #f5f5f5; /* Fondo gris claro al pasar el mouse */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+/* Estilos para la última fila (sin borde inferior) */
+#jugadores-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estilos para las imágenes en la columna "Foto" */
+#jugadores-table tbody td img {
+    border-radius: 10px; /* Imágenes redondeadas */
+    border: 2px solid #26baa5; /* Borde verde */
+    transition: transform 0.3s ease; /* Efecto de escala al pasar el mouse */
+}
+
+#jugadores-table tbody td img:hover {
+    transform: scale(1.1); /* Escala la imagen al pasar el mouse */
+}
+
+/* Estilos para el botón "Imprimir" */
+#jugadores-table tbody td button {
+    background-color: #26baa5; /* Verde moderno */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+#jugadores-table tbody td button:hover {
+    background-color: #45a049; /* Verde más oscuro al pasar el mouse */
+}
+
+/* Estilos para el mensaje de "No hay datos" */
+.dataTables_empty {
+    text-align: center;
+    padding: 20px;
+    color: #777777;
+    font-style: italic;
+}
+
+/* Estilos para la paginación de DataTables */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 6px 12px;
+    margin: 0 2px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    color: #26baa5;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #26baa5;
+    color: white;
+    border-color: #26baa5;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #26baa5;
+    color: white;
+    border-color: #26baa5;
+}
