@@ -35,45 +35,59 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
     <style>
-        .organizador-section {
+ .organizador-section {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    background-color: #ffffff; /* Fondo blanco */
+    text-align: center;
+    background-color: #ffffff;
     padding: 20px;
-    border-radius: 10px; /* Esquinas redondeadas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin: 20px 0;
 }
 
 .organizador-foto img {
-    width: 100px; /* Tamaño de la foto */
-    height: 100px;
-    border-radius: 50%; /* Foto circular */
-    border: 3px solid #27ae60; /* Borde verde */
-    margin-right: 20px; /* Espacio entre la foto y la información */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #27ae60;
+    margin-bottom: 15px;
 }
 
 .organizador-info {
-    flex: 1; /* Ocupa el espacio restante */
+    max-width: 400px;
 }
 
 .organizador-nombre {
     font-size: 18px;
     font-weight: bold;
-    color: #2c3e50; /* Color oscuro */
+    color: #2c3e50;
     margin-bottom: 10px;
 }
 
 .organizador-mensaje {
     font-size: 14px;
-    color: #34495e; /* Color gris oscuro */
-    margin-bottom: 10px;
+    color: #34495e;
+    margin-bottom: 20px;
 }
 
-.organizador-contacto {
-    font-size: 14px;
-    color: #34495e; /* Color gris oscuro */
-    margin-bottom: 0;
+.redes-sociales {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    gap: 15px; /* Espacio entre los íconos */
+}
+
+.redes-sociales .nav-link {
+    text-decoration: none; /* Elimina el subrayado */
+}
+
+.redes-sociales .fa-brands {
+    transition: transform 0.3s ease; /* Efecto de animación */
+}
+
+.redes-sociales .fa-brands:hover {
+    transform: scale(1.2); /* Efecto de escala al pasar el mouse */
 }
     </style>
 
@@ -118,18 +132,41 @@
         </div>
     </section>
 
-    <div class="organizador-section">
-        <div class="organizador-foto">
-            <img src="images/organizador.png" alt="Foto del Organizador">
-        </div>
-        <div class="organizador-info">
-            <h3 class="organizador-nombre">David Flores</h3>
-            <p class="organizador-mensaje">
-                ¡Hola! Soy el organizador de este evento. Si tienes alguna duda o necesitas ayuda, no dudes en contactarme.
-            </p>
-            <p class="organizador-contacto">
-                <strong>Contacto:</strong> Tel: 60902299
-            </p>
+ 
+    <div class="player-details">
+        <!-- Tabla de la ficha del jugador -->
+        <table class="jugador-table">
+            <!-- ... -->
+        </table>
+    
+        <!-- Sección del organizador -->
+        <div class="organizador-section">
+            <div class="organizador-foto">
+                <img src="images/organizador.png" alt="Foto del Organizador">
+            </div>
+            <div class="organizador-info">
+                <h3 class="organizador-nombre">David Flores</h3>
+                <p class="organizador-mensaje">
+                    Apasionado por la tecnología, desarrollo de aplicaciones, robótica y, especialmente, la inteligencia artificial, con el objetivo de innovar y crear soluciones que transformen la educación.
+                </p>
+                <div class="redes-sociales">
+                    <a class="nav-link" target="_blank" href="https://wa.me/59171039910">
+                        <i class="fa-brands fa-whatsapp fa-beat fa-2x" style="color: #2ba81a;"></i>
+                    </a>
+                    <a class="nav-link" target="_blank" href="https://tiktok.com/@ite_educabol">
+                        <i class="fa-brands fa-tiktok fa-spin-pulse fa-2x" style="color: #000000;"></i>
+                    </a>
+                    <a class="nav-link" target="_blank" href="https://facebook.com/ite.educabol">
+                        <i class="fa-brands fa-facebook-f fa-bounce fa-2x" style="color: #0158ef;"></i>
+                    </a>
+                    <a class="nav-link" target="_blank" href="https://youtube.com/@ite_educabol">
+                        <i class="fa-brands fa-youtube fa-shake fa-2x" style="color: #eb0000;"></i>
+                    </a>
+                    <a class="nav-link" target="_blank" href="https://instagram.com/ite.educabol">
+                        <i class="fa-brands fa-instagram fa-shake fa-2x" style="color: #db00a1;"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
         <!-- Sección de Contáctanos - Únete a Nosotros -->
