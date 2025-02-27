@@ -5,119 +5,155 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil del Jugador</title>
     <style>
-/* Estilos generales */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    color: #333;
-}
-
-/* Contenedor del perfil */
-.player-profile {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 400px;
-    text-align: center;
-}
-
-/* Encabezado del jugador */
-.player-header {
-    padding: 20px;
-    background-color: #26baa5;
-    color: #fff;
-}
-
-.player-photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid #fff;
-    margin-bottom: 15px;
-}
-
-.player-name {
-    font-size: 24px;
-    margin: 10px 0;
-}
-
-.player-role {
-    font-size: 18px;
-    margin: 5px 0;
-    font-weight: 300;
-}
-
-/* Detalles del jugador */
-.player-details {
-    padding: 20px;
-    text-align: left;
-}
-
+/* Estilos para los detalles del jugador */
 .detail-item {
-    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9; /* Fondo claro */
+    border-radius: 5px; /* Esquinas redondeadas */
+    border: 1px solid #ddd; /* Borde sutil */
 }
 
 .detail-label {
     font-weight: bold;
-    color: rgb(55, 95, 122);
-    display: block;
-    margin-bottom: 5px;
+    color: #2c3e50; /* Color oscuro */
 }
 
 .detail-value {
+    color: #34495e; /* Color gris oscuro */
+}
+
+/* Estilos para la sección del QR */
+.qr-section {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 25px;
+    border-radius: 15px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    text-align: center;
+    margin: 20px auto;
+    max-width: 400px; /* Ancho máximo */
+}
+
+.qr-message {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50; /* Color oscuro */
+    margin-bottom: 10px;
+}
+
+.qr-instruction {
     font-size: 16px;
-    color: #555;
+    color: #34495e; /* Color gris oscuro */
+    margin-bottom: 20px;
+}
+
+.qr-image {
+    width: 200px;
+    height: 200px;
+    margin: 10px 0; /* Espaciado alrededor del QR */
+    border: 1px solid #ddd; /* Borde sutil */
+    border-radius: 10px; /* Esquinas redondeadas */
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd; /* Línea divisoria */
+    margin: 20px 0;
+}
+
+/* Estilos para los botones */
+.download-button {
+    background-color: #27ae60; /* Verde llamativo */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #219653; /* Verde más oscuro al pasar el mouse */
+}
+
+.print-button {
+    background-color: rgb(55, 95, 122); /* Azul oscuro */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.print-button:hover {
+    background-color: rgb(45, 85, 112); /* Azul más oscuro al pasar el mouse */
+}
+
+/* Contenedor del botón de imprimir */
+.print-section {
+    text-align: center;
+    margin: 20px;
 }
     </style>
 </head>
 <body>
-    <div class="player-profile">
-        <div class="player-header">
-            <img src="{{ asset('storage/'.$jugador->foto) }}" alt="Foto de {{ $jugador->nombre }}" class="player-photo">
-            <h1 class="player-name">{{ $jugador->nombre }} {{ $jugador->apellidos }}</h1>
-            <p class="player-role">{{ $jugador->papel }}</p>
+    <div class="player-details">
+        <!-- Detalles existentes del jugador -->
+        <div class="detail-item">
+            <span class="detail-label">Número de Jugador:</span>
+            <span class="detail-value">{{ $jugador->numero_jugador }}</span>
         </div>
-        <div class="player-details">
-            <div class="detail-item">
-                <span class="detail-label">Número de Jugador:</span>
-                <span class="detail-value">{{ $jugador->numero_jugador }}</span>
-            </div>
-            <div class="detail-item">
-                <span class="detail-label">Fecha de Nacimiento:</span>
-                <span class="detail-value">{{ $jugador->fecha_nacimiento }}</span>
-            </div>
-            <div class="detail-item">
-                <span class="detail-label">Estado:</span>
-                <span class="detail-value">{{ $jugador->estado }}</span>
-            </div>
-            <div class="detail-item">
-                <span class="detail-label">Hora de Juego:</span>
-                <span class="detail-value">{{ $jugador->hora_juego ?? 'No definida' }}</span>
-            </div>
-            <div class="detail-item">
-                <span class="detail-label">Rol:</span>
-                <span class="detail-value">{{ $jugador->papel }}</span>
-            </div>
-            <div class="detail-item">
-                <span class="detail-label">ID de Usuario:</span>
-                <span class="detail-value">{{ $jugador->user_id }}</span>
-            </div>
-
-            <div style="text-align: center; margin: 20px;">
-                <a href="{{ route('generarPDF', $jugador->id) }}" target="_blank">
-                    <button style="background-color:rgb(55,95,122); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                        Imprimir registro
-                    </button>
-                </a>
-            </div>
-            
+        <!-- ... otros detalles ... -->
+    
+        <!-- Sección del QR -->
+        <div class="qr-section">
+            <h2 class="qr-message">
+                ¡Estás a un paso de finalizar tu registro!
+            </h2>
+            <p class="qr-instruction">
+                Escanea el siguiente código QR para realizar el pago de <strong>Bs. 6</strong> y asegurar tu participación.
+            </p>
+            <img src="{{ asset('storage/jugadores/qr.png') }}" alt="QR de pago" class="qr-image">
+            <hr>
+            <button class="download-button" onclick="descargarQR()">
+                Descargar QR
+            </button>
+        </div>
+    
+        <!-- Botón de imprimir registro (existente) -->
+        <div class="print-section">
+            <a href="{{ route('generarPDF', $jugador->id) }}" target="_blank">
+                <button class="print-button">
+                    Imprimir registro
+                </button>
+            </a>
         </div>
     </div>
+
+
+    <script>
+    function descargarQR() {
+        const qrImage = document.querySelector('.qr-image');
+        const imageURL = qrImage.src;
+
+        // Crear un enlace temporal para descargar la imagen
+        const link = document.createElement('a');
+        link.href = imageURL;
+        link.download = 'qr_pago.png'; // Nombre del archivo descargado
+        link.style.display = 'none'; // Ocultar el enlace
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+    </script>
 </body>
 </html>

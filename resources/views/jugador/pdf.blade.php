@@ -32,6 +32,31 @@
         .qr { width: 180px; margin-top: 20px; }
         .logo { width: 100px; margin-top: 2px; }
         .footer { margin-top: 30px; font-size: 14px; color: #555; border-top: 1px solid #ccc; padding-top: 10px; }
+
+        .titulo {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+.jugador-table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre celdas */
+    margin-bottom: 5px;
+}
+
+.jugador-table td {
+    padding: 3px 5px; /* Espaciado interno */
+    border: 1px solid #ddd; /* Borde sutil */
+    font-size: 11px;
+}
+
+.jugador-table td:first-child {
+    font-weight: bold;
+    background-color: #f9f9f9; /* Fondo claro para las etiquetas */
+    width: 30%; /* Ancho de la columna de etiquetas */
+}
     </style>
 </head>
 <body>
@@ -40,21 +65,32 @@
         <img src="{{ public_path('storage/jugadores/logo.png') }}" alt="Logo" class="logo" >
 
         <div class="titulo">Ficha del Jugador</div>
-        <div class="dato"><strong>Nombre:</strong> {{ $jugador->nombre }} {{ $jugador->apellidos }}</div>
-        <div class="dato"><strong>Teléfono:</strong> {{ $jugador->telefono }}</div>
-        <div class="dato"><strong>Fecha de Nacimiento:</strong> {{ $jugador->fecha_nacimiento }}</div>
-        <div class="dato"><strong>Estado:</strong> {{ ucfirst($jugador->estado) }}</div>
-        <div class="dato"><strong>Hora de Juego:</strong> {{ $jugador->hora_juego ?? 'Pendiente' }}</div>
-        <div class="dato"><strong>Papel:</strong> {{ ucfirst($jugador->papel) }}</div>
+        <table class="jugador-table">
+            <tr>
+                <td><strong>Nombre:</strong></td>
+                <td colspan="3">{{ $jugador->nombre }} {{ $jugador->apellidos }}</td>
+            </tr>
+            <tr>
+                <td><strong>Teléfono:</strong></td>
+                <td>{{ $jugador->telefono }}</td>
+                <td><strong>Fecha Nac:</strong></td>
+                <td>{{ $jugador->fecha_nacimiento }}</td>
+            </tr>
+            <tr>
+                <td><strong>Estado:</strong></td>
+                <td>{{ ucfirst($jugador->estado) }}</td>
+                <td><strong>Hora de Juego:</strong></td>
+                <td>{{ $jugador->hora_juego ?? 'Pendiente' }}</td>
+            </tr>
+        </table>
 
         <!-- Número del jugador grande -->
        
         <!-- Código QR para el pago -->
-        <p>Escanea este código QR para depositar Bs. 6 y participar:</p>
+        <p>Si realizaste el pago ya estas registrado. Envianos tu comprobante por favor</p>
         {{-- <img src="{{ asset('qr.jpg') }}" alt="QR Pago" class="qr"> --}}
         
-        <img src="{{ public_path('storage/jugadores/qr.png') }}" alt="QR Pago" class="qr" >
-
+        <img src="{{ public_path('storage/'.$jugador->foto) }}" alt="QR Pago" class="qr" height="200px" >
 
         <!-- Pie de página -->
         <div class="footer">
