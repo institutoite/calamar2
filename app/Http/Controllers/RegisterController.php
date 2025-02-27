@@ -60,8 +60,9 @@ public function register(Request $request)
     /**
      * Display a listing of the resource.
      */
-    public function registrar_jugador(User $user) 
+    public function registrar_jugador() 
     {
+        $user = User::findOrFail(1);
         return view('jugador.form',compact("user"));
     }
 

@@ -71,7 +71,7 @@
         <div class="welcome-container">
             <h1>¡Bienvenidos al Mundo del Juego del Calamar!</h1>
             <p>¿Estás listo para sumergirte en una aventura llena de diversión, desafíos y emociones? ¡Regístrate y únete a la diversión!</p>
-            <a href="{{ route('registro') }}" class="register-button">¡Regístrate Ahora! 🎉</a>
+            <a href="{{ route('registrar_jugador') }}" class="register-button">¡Regístrate Ahora! 🎉</a>
         </div>
     </section>
         <!-- Sección de Contáctanos - Únete a Nosotros -->
