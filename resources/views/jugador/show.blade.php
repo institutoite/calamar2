@@ -122,7 +122,7 @@ hr {
             <p class="qr-instruction">
                 Escanea el siguiente código QR para realizar el pago de <strong>Bs. 6</strong> y asegurar tu participación.
             </p>
-            <img src="{{ public_path('storage/jugadores/qr.png') }}" alt="QR de pago" class="qr-image">
+            <img src="{{ asset('storage/jugadores/qr.png') }}" alt="QR de pago" class="qr-image">
             <hr>
             <button class="download-button" onclick="descargarQR()">
                 Descargar QR
