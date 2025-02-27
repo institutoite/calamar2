@@ -54,16 +54,19 @@ form input[type="date"]:focus {
 
 /* Estilos para el botón de registro */
 form button[type="submit"] {
-    width: 100%;
+    width: 50%;
     padding: 12px;
     font-size: 16px;
     font-weight: 600;
     color: #fff;
+    margin-top: 20px;
     background-color: #26baa5; /* Color rojo llamativo */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    display: block; /* Hace que el botón sea un bloque */
+    margin: 0 auto; /* Centra el botón horizontalmente */
 }
 
 form button[type="submit"]:hover {
@@ -224,7 +227,9 @@ form input[type="file"]::-webkit-file-upload-button:hover {
         </div>
     
         <!-- Botón de Registro -->
-        <button type="submit">Registrarse</button>
+        <div class="text-center">
+            <button type="submit">Registrarse</button>
+        </div>
     </form>
     
    

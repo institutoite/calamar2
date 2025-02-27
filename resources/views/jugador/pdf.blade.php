@@ -8,7 +8,26 @@
         .container { border: 2px solid rgb(55, 95, 122); padding: 10px; width: 90%; margin: auto; position: relative; }
         .titulo { font-size: 24px; font-weight: bold; margin-bottom: 20px; color: #000 }
         .dato { font-size: 18px; color: #555; margin-bottom: 3px; }
-        .numero-jugador { font-size: 150px; font-weight: bold; border: 2px dashed rgb(98, 97, 97); width: 95%; padding: 10px; display: inline-block; margin-top: 10px; }
+        /* .numero-jugador { font-size: 150px; font-weight: bold; border: 2px dashed rgb(98, 97, 97); width: 95%; padding: 10px; display: inline-block; margin-top: 10px; }
+        .numero-jugador .datos { font-size: 12px; font-weight: bold; border: 2px dashed rgb(98, 97, 97);  padding: 10px; display: inline-block; margin-top: 10px; } */
+
+        .numero-jugador {
+    font-size: 150px; /* Tamaño grande para el número */
+    font-weight: bold;
+    border: 2px dashed rgb(98, 97, 97); /* Borde punteado solo en el contenedor principal */
+    width: 95%; /* Ancho del contenedor */
+    padding: 3px; /* Espaciado interno reducido */
+    text-align: center; /* Centra el contenido horizontalmente */
+    margin: 2px 2px; /* Centra el contenedor y añade un margen pequeño */
+}
+
+.datos {
+    font-size: 15px; /* Tamaño pequeño para los datos */
+    font-weight: bold;
+    text-align: center; /* Centra el texto */
+    margin-top: 1px; /* Espacio mínimo entre el número y los datos */
+    padding: 0; /* Elimina el padding para ahorrar espacio */
+}
         .logo { width: 150px; margin-bottom: 20px; }
         .qr { width: 180px; margin-top: 20px; }
         .logo { width: 100px; margin-top: 2px; }
@@ -43,7 +62,13 @@
             <p>Para mayor información: <strong>60902299</strong></p>
         </div>
 
-        <div class="numero-jugador">{{ $jugador->numero_jugador }}</div>
+        <div class="numero-jugador">
+            {{ $jugador->numero_jugador }} <!-- Número del jugador -->
+            <div class="datos">
+                <p>{{ $jugador->nombre }} {{ $jugador->hora_juego }}</p> <!-- Nombre y hora -->
+            </div>
+        </div>
+        
         <p>Después de imprimir tu número de jugador, recórtalo y pégalo en tu ropa el día del evento.  <strong>¡Así sabremos que eres parte del juego! </strong></p>
     </div>
 </body>
