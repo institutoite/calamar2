@@ -34,6 +34,49 @@
     {{-- data datable --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
+    <style>
+        .organizador-section {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 20px;
+    border-radius: 10px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 20px 0;
+}
+
+.organizador-foto img {
+    width: 100px; /* Tamaño de la foto */
+    height: 100px;
+    border-radius: 50%; /* Foto circular */
+    border: 3px solid #27ae60; /* Borde verde */
+    margin-right: 20px; /* Espacio entre la foto y la información */
+}
+
+.organizador-info {
+    flex: 1; /* Ocupa el espacio restante */
+}
+
+.organizador-nombre {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50; /* Color oscuro */
+    margin-bottom: 10px;
+}
+
+.organizador-mensaje {
+    font-size: 14px;
+    color: #34495e; /* Color gris oscuro */
+    margin-bottom: 10px;
+}
+
+.organizador-contacto {
+    font-size: 14px;
+    color: #34495e; /* Color gris oscuro */
+    margin-bottom: 0;
+}
+    </style>
+
 </head>
 <body>
 
@@ -74,6 +117,21 @@
             <a href="{{ route('registrar_jugador') }}" class="register-button">¡Regístrate Ahora! 🎉</a>
         </div>
     </section>
+
+    <div class="organizador-section">
+        <div class="organizador-foto">
+            <img src="images/organizador.png" alt="Foto del Organizador">
+        </div>
+        <div class="organizador-info">
+            <h3 class="organizador-nombre">David Flores</h3>
+            <p class="organizador-mensaje">
+                ¡Hola! Soy el organizador de este evento. Si tienes alguna duda o necesitas ayuda, no dudes en contactarme.
+            </p>
+            <p class="organizador-contacto">
+                <strong>Contacto:</strong> Tel: 60902299
+            </p>
+        </div>
+    </div>
         <!-- Sección de Contáctanos - Únete a Nosotros -->
 <section class="join-us-section">
     <div class="join-us-container">
