@@ -48,8 +48,8 @@
 }
 
 .organizador-foto img {
-    width: 120px;
-    height: 120px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     border: 3px solid #27ae60;
     margin-bottom: 15px;

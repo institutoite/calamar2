@@ -92,47 +92,60 @@ class JugadorResource extends Resource
     }
 
     public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('nombre')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('apellidos')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('foto') // Se cambia TextColumn a ImageColumn
-                    ->square(), // Opcional: Ajusta la imagen a un formato cuadrado
-                Tables\Columns\TextColumn::make('fecha_nacimiento')
-                    ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('numero_jugador')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('estado')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('hora_juego'),
-                Tables\Columns\TextColumn::make('papel')
-                    ->searchable(),
-               
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
+{
+    return $table
+        ->columns([
+            Tables\Columns\TextColumn::make('nombre')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('apellidos')
+                ->searchable(),
+            Tables\Columns\ImageColumn::make('foto') // Columna de imagen
+                ->square(), // Formato cuadrado
+            Tables\Columns\TextColumn::make('fecha_nacimiento')
+                ->date()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('numero_jugador')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('estado')
+                ->formatStateUsing(function (string $state) {
+                    return $state === 'eliminado' ? 'Impago' : 'Pagado'; // Muestra "Impago" o "Pagado"
+                })
+                ->searchable(),
+            Tables\Columns\TextColumn::make('hora_juego'),
+            Tables\Columns\TextColumn::make('papel')
+                ->searchable(),
+                Tables\Columns\TextColumn::make('telefono') // Columna de teléfono
+                ->formatStateUsing(function ($record) { // Usamos $record para acceder a otros campos
+                    $nombre = $record->nombre . ' ' . $record->apellidos; // Nombre completo
+                    $horaJuego = $record->hora_juego; // Hora de juego
+                    $numero_jugador = $record->numero_jugador; // Hora de juego
+                    $mensaje = urlencode("Hola {$nombre} con numero de jugador {$numero_jugador}, tu hora de juego es {$horaJuego}."); // Mensaje codificado
+                    $telefono = $record->telefono; // Número de teléfono
+            
+                    return "<a href='https://wa.me/591{$telefono}?text={$mensaje}' target='_blank'>{$telefono}</a>"; // Enlace a WhatsApp con mensaje
+                })
+                ->html(), // Permite renderizar HTML
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('updated_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+        ])
+        ->filters([
+            //
+        ])
+        ->actions([
+            Tables\Actions\EditAction::make(),
+        ])
+        ->bulkActions([
+            Tables\Actions\BulkActionGroup::make([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]),
+        ]);
+}
 
     public static function getRelations(): array
     {

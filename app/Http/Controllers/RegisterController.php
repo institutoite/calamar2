@@ -77,7 +77,7 @@ public function register(Request $request)
         $request->validate([
             'nombre' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
             'telefono' => 'required|numeric|digits:8',
             'fecha_nacimiento' => 'required|date|before:today',
             'numero_jugador' => 'required|integer|max:9999|unique:jugadors,numero_jugador',
