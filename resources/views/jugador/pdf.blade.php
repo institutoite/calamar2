@@ -4,6 +4,167 @@
     <meta charset="UTF-8">
     <title>Ficha del Jugador</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            border: 2px solid rgb(55, 95, 122);
+            padding: 10px;
+            width: 90%;
+            margin: auto;
+            position: relative;
+            page-break-inside: avoid; /* Evita que el contenido se divida en dos páginas */
+        }
+        .titulo {
+            font-size: 20px; /* Reducido para ahorrar espacio */
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #000;
+        }
+        .logo {
+            width: 100px; /* Reducido para ahorrar espacio */
+            margin-bottom: 10px;
+        }
+        .jugador-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px; /* Reducido para ahorrar espacio */
+            font-size: 14px; /* Reducido para ahorrar espacio */
+        }
+        .jugador-table td {
+            padding: 6px; /* Reducido para ahorrar espacio */
+            border: 1px solid #ddd;
+        }
+        .jugador-table td:first-child {
+            font-weight: bold;
+            background-color: #f9f9f9;
+            width: 30%;
+        }
+        .recortable {
+            border: 2px dashed #000;
+            padding: 10px;
+            margin: 10px 0; /* Reducido para ahorrar espacio */
+            display: flex; /* Diseño de dos columnas */
+            align-items: center; /* Centra verticalmente */
+            justify-content: space-between; /* Espacio entre columnas */
+        }
+        .numero-jugador {
+            font-size: 120px; /* Reducido para ahorrar espacio */
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0; /* Sin margen para ahorrar espacio */
+        }
+        .datos {
+            font-size: 16px; /* Reducido para ahorrar espacio */
+            font-weight: bold;
+            margin-top: 5px; /* Reducido para ahorrar espacio */
+            color: #555;
+        }
+        .estado {
+            font-size: 18px; /* Reducido para ahorrar espacio */
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 5px; /* Reducido para ahorrar espacio */
+        }
+        .estado.habilitado {
+            background-color: #4CAF50; /* Verde para habilitado */
+            color: white;
+        }
+        .estado.no-habilitado {
+            background-color: #f44336; /* Rojo para no habilitado */
+            color: white;
+        }
+        .foto {
+            width: 150px; /* Tamaño de la foto */
+            height: 150px; /* Tamaño de la foto */
+            border: 2px solid #ddd; /* Borde para la foto */
+            border-radius: 5px; /* Bordes redondeados */
+            object-fit: cover; /* Ajusta la foto al contenedor */
+        }
+        .qr {
+            width: 150px; /* Reducido para ahorrar espacio */
+            margin-top: 10px; /* Reducido para ahorrar espacio */
+        }
+        .footer {
+            margin-top: 10px; /* Reducido para ahorrar espacio */
+            font-size: 12px; /* Reducido para ahorrar espacio */
+            color: #555;
+            border-top: 1px solid #ccc;
+            padding-top: 5px; /* Reducido para ahorrar espacio */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logotipo -->
+        <img src="{{ public_path('storage/jugadores/logo.png') }}" alt="Logo" class="logo">
+
+        <div class="titulo">Ficha del Jugador</div>
+
+        <!-- Tabla de datos del jugador -->
+        <table class="jugador-table">
+            <tr>
+                <td><strong>Nombre:</strong></td>
+                <td colspan="3">{{ $jugador->nombre }} {{ $jugador->apellidos }}</td>
+            </tr>
+            <tr>
+                <td><strong>Teléfono:</strong></td>
+                <td>{{ $jugador->telefono }}</td>
+                <td><strong>Fecha Nac:</strong></td>
+                <td>{{ $jugador->fecha_nacimiento }}</td>
+            </tr>
+            <tr>
+                <td><strong>Hora de Juego:</strong></td>
+                <td colspan="3">{{ $jugador->hora_juego ?? 'Pendiente' }}</td>
+            </tr>
+        </table>
+
+        <!-- Recuadro de impresión -->
+        <div class="recortable">
+            <!-- Columna izquierda: Número, nombre, hora y estado -->
+            <div>
+                <div class="numero-jugador">
+                    {{ str_pad($jugador->numero_jugador, 3, '0', STR_PAD_LEFT) }} <!-- Rellena con ceros -->
+                </div>
+                <div class="datos">
+                    <p>{{ $jugador->nombre }} | Hora: {{ $jugador->hora_juego ?? 'Pendiente' }}</p>
+                </div>
+                <!-- Estado dentro del recuadro -->
+                <div class="estado {{ $jugador->estado == 'habilitado' ? 'habilitado' : 'no-habilitado' }}">
+                    {{ ucfirst($jugador->estado) }}
+                </div>
+            </div>
+
+            <!-- Columna derecha: Foto del jugador -->
+           
+        </div>
+
+        <!-- Código QR para el pago -->
+        <p>Si realizaste el pago, ya estás registrado. Envíanos tu comprobante por favor.</p>
+        <img src="{{ public_path('storage/' . $jugador->foto) }}" alt="Foto del Jugador" class="qr">
+
+        <!-- Pie de página -->
+        <div class="footer">
+            <p>Síguenos en TikTok: <strong>@ite_educabol</strong></p>
+            <p>Para mayor información: <strong>60902299</strong></p>
+        </div>
+
+        <p>Después de imprimir tu número de jugador, recórtalo y pégalo en tu ropa el día del evento. <strong>¡Así sabremos que eres parte del juego!</strong></p>
+    </div>
+</body>
+</html>
+
+{{-- <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha del Jugador</title>
+    <style>
         body { font-family: Arial, sans-serif; text-align: center; }
         .container { border: 2px solid rgb(55, 95, 122); padding: 10px; width: 90%; margin: auto; position: relative; }
         .titulo { font-size: 24px; font-weight: bold; margin-bottom: 20px; color: #000 }
@@ -88,7 +249,6 @@
        
         <!-- Código QR para el pago -->
         <p>Si realizaste el pago ya estas registrado. Envianos tu comprobante por favor</p>
-        {{-- <img src="{{ asset('qr.jpg') }}" alt="QR Pago" class="qr"> --}}
         
         <img src="{{ public_path('storage/'.$jugador->foto) }}" alt="QR Pago" class="qr" height="200px" >
 
@@ -108,4 +268,4 @@
         <p>Después de imprimir tu número de jugador, recórtalo y pégalo en tu ropa el día del evento.  <strong>¡Así sabremos que eres parte del juego! </strong></p>
     </div>
 </body>
-</html>
+</html> --}}

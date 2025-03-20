@@ -1,0 +1,32 @@
+.uniforme-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+.uniforme-container h1 {
+    font-size: 32px;
+    color: rgb(55, 95, 122);
+    margin-bottom: 20px;
+}
+.uniforme-container img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid rgb(38, 186, 165);
+}
+.uniforme-container p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.destacado {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(38, 186, 165);
+    margin: 20px 0;
+}

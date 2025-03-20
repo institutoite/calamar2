@@ -99,6 +99,7 @@ public function register(Request $request)
         $jugador->telefono = $request->telefono;
         $jugador->papel = $request->papel;
         $jugador->user_id = $request->user_id;
+        $jugador->estado= "Eliminado";
         $jugador->save(); // Guardar el jugador en la base de datos
 
         return view('jugador.show',compact("jugador"))->with('success', 'Jugador registrado exitosamente');
@@ -109,12 +110,9 @@ public function register(Request $request)
      function asignarHorario($fechaNacimiento) {
         // Definir los horarios de inicio para cada grupo de edad
         $horarios = [
-            'menor_5'   => '09:00',
-            'edad_5_6'  => '09:30',
-            'edad_7_8'  => '10:00',
-            'edad_9_10' => '10:30',
-            'edad_11_12'=> '11:00',
-            'mayor_12'  => '11:30',
+            'menor_6'   => '09:00', // Menores de 6 años
+            'edad_7_10' => '10:00', // Edad entre 7 y 10 años
+            'mayor_13'  => '11:00', // Mayores de 13 años
         ];
     
         // Obtener la edad actual
@@ -123,21 +121,14 @@ public function register(Request $request)
         $edad = $hoy->diff($fechaNacimiento)->y; // Obtener años de diferencia
     
         // Determinar el horario según la edad
-        if ($edad < 5) {
-            return $horarios['menor_5'];
-        } elseif ($edad >= 5 && $edad <= 6) {
-            return $horarios['edad_5_6'];
-        } elseif ($edad >= 7 && $edad <= 8) {
-            return $horarios['edad_7_8'];
-        } elseif ($edad >= 9 && $edad <= 10) {
-            return $horarios['edad_9_10'];
-        } elseif ($edad >= 11 && $edad <= 12) {
-            return $horarios['edad_11_12'];
+        if ($edad <= 6) {
+            return $horarios['menor_6']; // Menores de 6 años
+        } elseif ($edad >= 7 && $edad <= 10) {
+            return $horarios['edad_7_10']; // Edad entre 7 y 10 años
         } else {
-            return $horarios['mayor_12'];
+            return $horarios['mayor_13']; // Mayores de 13 años
         }
     }
-
 
     public function generarPDF($id)
     {

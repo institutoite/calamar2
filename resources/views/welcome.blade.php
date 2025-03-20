@@ -6,6 +6,9 @@
     <title>Juego del Calamar para Niños</title>
     <link rel="stylesheet" href="{{ asset('css/custom/estilos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom/tabla.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom/reconfirmar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom/horarios.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom/fecha.css') }}">
     
     {{-- pie de pagina  --}}
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -33,6 +36,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     {{-- data datable --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <!-- Font Awesome para íconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilos personalizados */
+        .estado-habilitado {
+            color: green;
+            font-weight: bold;
+        }
+        .estado-no-habilitado {
+            color: red;
+            font-weight: bold;
+        }
+        .foto-jugador {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .foto-jugador:hover {
+            transform: scale(1.5);
+        }
+        .textotabla{
+            font-size: 20px;
+            color: #db00a1;
+        }
+    </style>
+
 
     <style>
  .organizador-section {
@@ -94,6 +126,44 @@
 </head>
 <body>
 
+
+
+    <!-- Modal para la foto -->
+    <div class="modal fade" id="fotoModal" tabindex="-1" aria-labelledby="fotoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fotoModalLabel">Foto del Jugador</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImagen" src="" alt="Foto del Jugador" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para detalles -->
+    <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detalleModalLabel">Detalles del Jugador</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nombre:</strong> <span id="modalNombre"></span></p>
+                    <p><strong>Apellidos:</strong> <span id="modalApellidos"></span></p>
+                    <p><strong>Número:</strong> <span id="modalNumero"></span></p>
+                    <p><strong>Estado:</strong> <span id="modalEstado"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- fin nuevo --}}
+
     <div class="header_section">
         <div class="container-fluid">
            <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -103,12 +173,7 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                       <a class="nav-link" href="{{ url('admin') }}">Iniciar Sesion</a>
-                    </li>
-                    <li class="nav-item">
-                       <a class="nav-link" href="{{ route('registro') }}">Registrare</a>
-                    </li>
+                   
                     <li class="nav-item">
                        <a class="nav-link" href="https://wa.me/59171039910"><i class="fa-brands fa-whatsapp fa-beat fa-2x" style="color: #2ba81a;"></i></a>
                     </li>
@@ -216,37 +281,146 @@
    
 
 <section class="info-section">
-    <table id="jugadores-table" class="display">
-        <thead>
-            <tr>
-                <th>Número de Jugador</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Foto</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($jugadores as $jugador)
+    <div class="container mt-5">
+      
+        <h1>Lista de Jugadores</h1>
+        <table id="jugadores-table" class="display">
+            <thead>
                 <tr>
+                    <th>Nombre</th>
+                    <th>Número</th>
+                    <th>Estado</th>
+                    <th>Foto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($jugadores as $jugador)
+                <tr>
+                    <td class="">{{ $jugador->nombre }} {{ $jugador->apellidos }}</td>
                     <td>{{ $jugador->numero_jugador }}</td>
-                    <td>{{ $jugador->nombre }}</td>
-                    <td>{{ $jugador->apellidos }}</td>
                     <td>
-                        <img src="{{ asset('storage/' . $jugador->foto) }}" alt="Foto" width="50">
+                        @if ($jugador->estado=="habilitado")
+                            <span class="estado-habilitado">
+                                <i class="fa-solid fa-circle-check fa-beat fa-3x" style="color: #01bc04;"></i>
+                            </span>    
+                        @else
+                            <span class="estado-no-habilitado">
+                                <i class="fa-solid fa-circle-xmark fa-3x" style="color: #de024f;"></i>
+                            </span>  
+                        @endif
+                        
                     </td>
                     <td>
-                        <a href="{{ route('generarPDF', $jugador->id) }}" target="_blank">
-                            <button style="background-color:rgb(55,95,122); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                                Imprimir
-                            </button>
-                        </a>
+                        <img src="{{ asset('storage/' . $jugador->foto) }}" alt="Foto de {{ $jugador->nombre }}" class="foto-jugador" width="50" data-bs-toggle="modal" data-bs-target="#fotoModal" data-bs-imagen="{{ asset('storage/' . $jugador->foto) }}">
+                    </td>
+                    <td >
+                            @if($jugador->estado == 'habilitado')
+                                <!-- Botón Imprimir (solo ícono sin fondo) -->
+                                <a href="{{ route('generarPDF', ['id' => $jugador->id]) }}" title="Imprimir" target="_blank">
+                                    <i class="fa-solid fa-print text-success fa-2x"></i>
+                                </a>
+                                
+                                <!-- Botón Ver (solo ícono sin fondo) -->
+                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#detalleModal" data-bs-id="{{ $jugador->id }}" data-bs-nombre="{{ $jugador->nombre }}" data-bs-apellidos="{{ $jugador->apellidos }}" data-bs-numero="{{ $jugador->numero_jugador }}" data-bs-estado="{{ $jugador->estado }}" title="Ver Detalles">
+                                    <i class="fas fa-eye text-info fa-2x"></i>
+                                </a>
+                            @else
+                                <!-- Botón Habilitar (solo ícono sin fondo) -->
+                                <a class="btn btn-danger" href="https://wa.me/59160902299?text=Hola,%20soy%20el%20Jugador%20{{ $jugador->numero_jugador }}.%20Mi%20nombre%20es%20{{ $jugador->nombre }}.%20Quiero%20que%20me%20habiliten%20para%20jugar%20el%20Juego%20del%20Calamar." target="_blank" title="Habilitar">
+                                    Eliminar
+                                </a>
+                            @endif
                     </td>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
 </section>
+
+<section class="join-us-section">
+    <div class="join-us-container">
+        <h2>Ingresa el número que deseas solicitar</h2>
+        <div class="reconfirmar-form-container">
+            <h1>Los números van de 1 a 456</h1>
+            <input type="number" id="numeroJugador" class="reconfirmar-input" placeholder="Ingresa tu número de jugador" min="1">
+            <button class="reconfirmar-button" onclick="enviarReconfirmacion()">Solcitar</button>
+        </div>
+    </div>
+</section>
+<section class="join-us-section">
+    <h2>HORARIOS</h2>
+    <div class="reconfirmar-form-container">
+        <div class="horarios-container">
+            <h1>Horarios del Juego del Calamar</h1>
+            <ul class="horarios-list">
+                <li>
+                    Menores de 7 años
+                    <span>9:00</span>
+                </li>
+                <li>
+                    Edad 7-10 años
+                    <span>10:00</span>
+                </li>
+                <li>
+                    Mayores de 10 años
+                    <span>11:00</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="evento-container">
+    <h1>¡Juego del Calamar para Niños!</h1>
+    <h2>Fecha: 12 de Abril | Hora: 9:00 AM</h2>
+    <p>
+        Este <strong>12 de abril</strong>, celebramos el Día del Niño con una edición especial del <strong>Juego del Calamar</strong>, diseñado especialmente para los más pequeños. Será una mañana llena de diversión, juegos y premios.
+    </p>
+    <p class="destacado">
+        ¡No te lo pierdas! Regístrate ahora y asegura tu lugar.
+    </p>
+    <p>
+        Aquí te dejamos algunas recomendaciones para que los niños disfruten al máximo:
+    </p>
+    
+    <p>
+        ¡Te esperamos para vivir una experiencia inolvidable!
+    </p>
+</div>
+  <!-- Sección de Registro -->
+  <section class="evento-container">
+    <div class="register-container">
+        <h3>Siguenos en Instagram</h3>
+        <a href="https://www.instagram.com/ite.educabol/" target="_blank" class="btn-join">Seguir</a>
+    </div>
+</section>
+
+<div class="uniforme-container">
+    <h1>Uniforme del Juego del Calamar</h1>
+    <img src="images/camiseta.jpg" alt="Uniforme del Juego del Calamar">
+    <p>
+        Para participar en el <strong>Juego del Calamar</strong>, todos los niños deben usar el uniforme oficial del evento. Este uniforme no solo les dará un sentido de pertenencia, sino que también les ayudará a identificarse como parte del equipo.
+    </p>
+    <p class="destacado">
+        ¡Recuerda que el uniforme es obligatorio para participar!
+    </p>
+    <p>
+        El uniforme incluye:
+    </p>
+    <p>
+        Si aún no tienes tu uniforme, contáctanos para obtenerlo antes del evento.
+    </p>
+</div>
+    <!-- Sección de Registro -->
+    <section class="register-section">
+        <div class="register-container">
+            <h2>Siguenos en Facebook</h2>
+            <a href="https://www.facebook.com/ite.educabol" target="_blank" class="btn-join">Seguir</a>
+        </div>
+    </section>
 
 
     <!-- Sección de Información del Juego -->
@@ -416,17 +590,25 @@
 <!-- sidebar -->
 <script src="{{ asset('js/header/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 <script src="{{ asset('js/header/custom.js') }}"></script>
+<script src="{{ asset('js/custom/reconfirmar.js') }}"></script>
 <!-- javascript --> 
 <script src="{{ asset('js/header/owl.carousel.js') }}"></script>
 
 
+
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Inicializar DataTable
-        $('#jugadores-table').DataTable({
-           "language": {
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Inicializar DataTable
+            $('#jugadores-table').DataTable({
+                "language": {
                     "decimal": ",",
                     "thousands": ".",
                     "lengthMenu": "Mostrar _MENU_ registros por página",
@@ -449,10 +631,37 @@
                         "sortDescending": ": activar para ordenar la columna en orden descendente"
                     }
                 }
-        });
-    });
+            });
 
-    // Función para imprimir
+            // Modal para la foto
+            $('#fotoModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var imagenSrc = button.data('bs-imagen');
+                $('#modalImagen').attr('src', imagenSrc);
+            });
+
+            // Modal para detalles
+            $('#detalleModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var nombre = button.data('bs-nombre');
+                var apellidos = button.data('bs-apellidos');
+                var numero = button.data('bs-numero');
+                var estado = button.data('bs-estado');
+                $('#modalNombre').text(nombre);
+                $('#modalApellidos').text(apellidos);
+                $('#modalNumero').text(numero);
+                $('#modalEstado').text(estado);
+            });
+        });
+
+        // Funciones para botones
+        function imprimirJugador(id) {
+            alert(`Imprimir jugador con ID: ${id}`);
+        }
+
+        function habilitarJugador(id) {
+            alert(`Habilitar jugador con ID: ${id}`);
+        }
     function imprimirJugador(id) {
         alert("Imprimir jugador con ID: " + id);
         // Aquí puedes agregar la lógica para imprimir

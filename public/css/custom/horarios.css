@@ -1,0 +1,40 @@
+.horarios-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+}
+.horarios-container h1 {
+    font-size: 28px;
+    color: rgb(55, 95, 122);
+    margin-bottom: 20px;
+}
+.horarios-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.horarios-list li {
+    background-color: rgb(38, 186, 165);
+    color: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.horarios-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.horarios-list li span {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 5px;
+}

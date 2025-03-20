@@ -121,6 +121,7 @@ hr {
             </h2>
             <p class="qr-instruction">
                 Escanea el siguiente código QR para realizar el pago de <strong>Bs. 6</strong> y asegurar tu participación.
+                Una vez pagado envianos el comprobante al numero 60902299
             </p>
             <img src="{{ asset('storage/jugadores/qr.png') }}" alt="QR de pago" class="qr-image">
             <hr>
@@ -135,7 +136,7 @@ hr {
                 <button class="print-button">
                     Imprimir registro
                 </button>
-            </a>
+            </a>   
         </div>
     </div>
 

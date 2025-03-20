@@ -17,7 +17,7 @@ use App\Http\Controllers\RegisterController;
 use App\Models\Jugador;
 
 Route::get('/', function () {
-    $jugadores = Jugador::select('id','numero_jugador', 'nombre', 'apellidos', 'foto')->get();
+    $jugadores = Jugador::select('id','numero_jugador', 'nombre', 'apellidos','estado', 'foto')->get();
     return view('welcome', compact('jugadores'));
 })->name("home");
 Route::get('/vista', function () {
