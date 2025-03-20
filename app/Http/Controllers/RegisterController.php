@@ -80,7 +80,7 @@ public function register(Request $request)
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
             'telefono' => 'required|numeric|digits:8',
             'fecha_nacimiento' => 'required|date|before:today',
-            'numero_jugador' => 'required|integer|max:9999|unique:jugadors,numero_jugador',
+            'numero_jugador' => 'required|integer|min:1|max:456|unique:jugadors,numero_jugador',
             'papel' => 'required|in:jugador,guardia,jefe,vip',
             'user_id' => 'required|exists:users,id',
         ]);

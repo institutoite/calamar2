@@ -328,7 +328,7 @@
                             @else
                                 <!-- Botón Habilitar (solo ícono sin fondo) -->
                                 <a class="btn btn-danger" href="https://wa.me/59160902299?text=Hola,%20soy%20el%20Jugador%20{{ $jugador->numero_jugador }}.%20Mi%20nombre%20es%20{{ $jugador->nombre }}.%20Quiero%20que%20me%20habiliten%20para%20jugar%20el%20Juego%20del%20Calamar." target="_blank" title="Habilitar">
-                                    Eliminar
+                                    Habilitar
                                 </a>
                             @endif
                     </td>
