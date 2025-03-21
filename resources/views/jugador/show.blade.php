@@ -120,7 +120,15 @@ hr {
                 ¡Estás a un paso de finalizar tu registro!
             </h2>
             <p class="qr-instruction">
-                Escanea el siguiente código QR para realizar el pago de <strong>Bs. 6</strong> y asegurar tu participación.
+                Escanea el siguiente código QR para realizar el pago de <strong>Bs. 6 + Costo de Uniforme</strong>
+            </p>
+           
+                <li>Bs. 55 para menores a talla 10 </li>
+                <li>Bs. 60 para tallas entre 12 y 16</li>
+                <li>Bs. 65 para tallas mayores a 16</li>
+            
+            <p>   
+                y asegurar tu participación.
                 Una vez pagado envianos el comprobante al numero 60902299
             </p>
             <img src="{{ asset('storage/jugadores/qr.png') }}" alt="QR de pago" class="qr-image">
