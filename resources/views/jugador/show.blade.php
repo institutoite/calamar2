@@ -129,14 +129,13 @@ hr {
                 Descargar QR
             </button>
         </div>
-    
-        <!-- Botón de imprimir registro (existente) -->
+
         <div class="print-section">
-            <a href="{{ route('generarPDF', $jugador->id) }}" target="_blank">
+            <a href="#" onclick="enviarWhatsApp({{ json_encode($jugador) }})">
                 <button class="print-button">
-                    Imprimir registro
+                    Enviar Confirmacion
                 </button>
-            </a>   
+            </a>
         </div>
     </div>
 
@@ -155,6 +154,27 @@ hr {
         link.click();
         document.body.removeChild(link);
     }
+
+    function enviarWhatsApp(jugador) {
+        // Construir el mensaje de forma segura
+        const mensaje = `
+        *Nombre:* ${jugador.nombre || ''}
+        *Apellidos:* ${jugador.apellidos || ''}
+        *Teléfono:* ${jugador.telefono || ''}
+        *Fecha de Nacimiento:* ${jugador.fecha_nacimiento || ''}
+        *Número de Jugador:* ${jugador.numero_jugador || ''}
+        *Estado:* ${jugador.estado || ''}
+        *Hora de Juego:* ${jugador.hora_juego || ''}
+        *Papel:* ${jugador.papel || ''}
+        *Confirmación de Registro y Pago:* El usuario ha sido registrado y ha realizado el pago correctamente.`;
+        // Codificar el mensaje para URL
+        const mensajeCodificado = encodeURIComponent(mensaje.trim());
+        // Crear el enlace de WhatsApp
+        const url = `https://wa.me/59160902299?text=${mensajeCodificado}`;
+        // Abrir el enlace en una nueva pestaña
+        window.open(url, '_blank');
+    }
+
     </script>
 </body>
 </html>
