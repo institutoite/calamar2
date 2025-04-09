@@ -391,27 +391,21 @@
     </p>
 </div>
   <!-- Sección de Registro -->
-  <section class="evento-container">
-    <div class="register-container">
-        <h3>Siguenos en Instagram</h3>
-        <a href="https://www.instagram.com/ite.educabol/" target="_blank" class="btn-join">Seguir</a>
-    </div>
-</section>
 
 <div class="uniforme-container">
     <h1>Uniforme del Juego del Calamar</h1>
     <img src="images/camiseta.jpg" alt="Uniforme del Juego del Calamar">
     <p>
-        Para participar en el <strong>Juego del Calamar</strong>, todos los niños deben usar el uniforme oficial del evento. Este uniforme no solo les dará un sentido de pertenencia, sino que también les ayudará a identificarse como parte del equipo.
+        Para participar en el <strong>Juego del Calamar</strong>, los niños tienen la opción de usar el uniforme temático del evento. Este uniforme es totalmente voluntario y quienes deseen usarlo podrán sentirse parte de la experiencia con mayor inmersión.
     </p>
     <p class="destacado">
-        ¡Recuerda que el uniforme es obligatorio para participar!
+        ¡El uniforme es opcional! Puedes participar con o sin él.
     </p>
     <p>
         El uniforme incluye:
     </p>
     <p>
-        Si aún no tienes tu uniforme, contáctanos para obtenerlo antes del evento.
+        Si te gustaría usar el uniforme para vivir la experiencia completa, contáctanos para obtener más información.
     </p>
 </div>
     <!-- Sección de Registro -->
