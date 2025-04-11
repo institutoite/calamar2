@@ -136,7 +136,7 @@ class JugadorResource extends Resource
                 $mensajeTexto = 
                     "Hola {$nombre} 😊\n\n" .
                     "Tu número de jugador (*{$numero_jugador}*) actualmente está marcado como *NO HABILITADO*.\n\n" .
-                    "Nos están solicitando este número, por lo que te pedimos por favor que *confirmes si participarás* o no.\n\n" .
+                    "Otro Jugador nos está solicitando este número, por lo que te pedimos por favor que *confirmes si participarás* o no.\n\n" .
                     "En caso de que no vayas a participar, lo asignaremos a otro jugador para que no se pierda. ¡Nos encantaría que formes parte de esto! 💙\n\n" .
                     "*Hora de juego:* {$horaJuego}\n\n" .
                     "¡Gracias por tu atención!";
