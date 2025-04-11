@@ -114,17 +114,39 @@ class JugadorResource extends Resource
             Tables\Columns\TextColumn::make('hora_juego'),
             Tables\Columns\TextColumn::make('papel')
                 ->searchable(),
-                Tables\Columns\TextColumn::make('telefono') // Columna de teléfono
-                ->formatStateUsing(function ($record) { // Usamos $record para acceder a otros campos
-                    $nombre = $record->nombre . ' ' . $record->apellidos; // Nombre completo
-                    $horaJuego = $record->hora_juego; // Hora de juego
-                    $numero_jugador = $record->numero_jugador; // Hora de juego
-                    $mensaje = urlencode("Hola {$nombre} con numero de jugador {$numero_jugador}, tu hora de juego es {$horaJuego}."); // Mensaje codificado
-                    $telefono = $record->telefono; // Número de teléfono
+            // Tables\Columns\TextColumn::make('telefono') // Columna de teléfono
+            //     ->formatStateUsing(function ($record) { // Usamos $record para acceder a otros campos
+            //         $nombre = $record->nombre . ' ' . $record->apellidos; // Nombre completo
+            //         $horaJuego = $record->hora_juego; // Hora de juego
+            //         $numero_jugador = $record->numero_jugador; // Hora de juego
+            //         $mensaje = urlencode("Hola {$nombre} con numero de jugador {$numero_jugador}, tu hora de juego es {$horaJuego}."); // Mensaje codificado
+            //         $telefono = $record->telefono; // Número de teléfono
             
-                    return "<a href='https://wa.me/591{$telefono}?text={$mensaje}' target='_blank'>{$telefono}</a>"; // Enlace a WhatsApp con mensaje
-                })
-                ->html(), // Permite renderizar HTML
+            //         return "<a href='https://wa.me/591{$telefono}?text={$mensaje}' target='_blank'>{$telefono}</a>"; // Enlace a WhatsApp con mensaje
+            //     })
+            //     ->html(), // Permite renderizar HTML
+            Tables\Columns\TextColumn::make('telefono')
+            ->formatStateUsing(function ($record) {
+                $nombre = $record->nombre . ' ' . $record->apellidos;
+                $horaJuego = $record->hora_juego;
+                $numero_jugador = $record->numero_jugador;
+                $telefono = $record->telefono;
+        
+                // Mensaje con saltos de línea (\n) y codificación adecuada
+                $mensajeTexto = 
+                    "Hola {$nombre} 😊\n\n" .
+                    "Tu número de jugador (*{$numero_jugador}*) actualmente está marcado como *NO HABILITADO*.\n\n" .
+                    "Nos están solicitando este número, por lo que te pedimos por favor que *confirmes si participarás* o no.\n\n" .
+                    "En caso de que no vayas a participar, lo asignaremos a otro jugador para que no se pierda. ¡Nos encantaría que formes parte de esto! 💙\n\n" .
+                    "*Hora de juego:* {$horaJuego}\n\n" .
+                    "¡Gracias por tu atención!";
+        
+                // Codificar el mensaje para la URL (usando rawurlencode para espacios y saltos)
+                $mensajeCodificado = rawurlencode($mensajeTexto);
+        
+                return "<a href='https://wa.me/591{$telefono}?text={$mensajeCodificado}' target='_blank'>{$telefono}</a>";
+            })
+            ->html(),
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()
